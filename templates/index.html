@@ -1,0 +1,44 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영상 업로드 및 예측</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        form { display: flex; flex-direction: column; gap: 10px; }
+        label { font-weight: bold; }
+        input, select { padding: 5px; }
+        button { padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+    </style>
+</head>
+
+<body>
+    <h1>영상 업로드 및 예측</h1>
+    <form action="/predict/" method="post" enctype="multipart/form-data">
+        <label for="video">영상 파일:</label>
+        <input type="file" id="video" name="file" accept="video/*" required>
+
+        <label for="product">제품:</label>
+        <select id="product" name="product" required>
+            <option value="">선택하세요</option>
+            {% for product in products %}
+                <option value="{{ product }}">{{ product }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="size">영상 사이즈:</label>
+        <select id="size" name="size" required>
+            <option value="">선택하세요</option>
+            <option value="0">유튜브용 (1920x1080)</option>
+            <option value="1">1x1</option>
+            <option value="2">4x5</option>
+            <option value="3">9x16</option>
+        </select>
+
+        <button type="submit">업로드 및 예측</button>
+    </form>
+</body>
+</html>

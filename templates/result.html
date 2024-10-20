@@ -1,0 +1,29 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예측 결과</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        h1 { color: #333; }
+        .result { background-color: #f0f0f0; padding: 20px; border-radius: 5px; margin-top: 20px; }
+        .result p { margin: 10px 0; }
+        .approved { color: green; }
+        .rejected { color: red; }
+        .back-link { display: inline-block; margin-top: 20px; color: #0066cc; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>예측 결과</h1>
+    <div class="result">
+        <p>제품: {{ product }}</p>
+        <p>품목: {{ category }} (라벨: {{ category_label }})</p>
+        <p>영상 사이즈: {{ size }}</p>
+        <p>예측 결과: <span class="{{ 'approved' if prediction == '승인' else 'rejected' }}">{{ prediction }}</span></p>
+        <p>신뢰도: {{ "%.2f"|format(confidence * 100) }}%</p>
+    </div>
+    <a href="/" class="back-link">다시 예측하기</a>
+</body>
+</html>
